@@ -1,0 +1,15 @@
+{
+  "name": "ToDoApp",
+  "version": "1.0.0",
+  "description": "A ToDo App using the MEAN Stack",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Timilehin and Jide @Andela",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.10.7",
+    "mongoose": "^3.8.21"
+  }
+}
