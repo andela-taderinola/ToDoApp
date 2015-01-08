@@ -1,23 +1,26 @@
 var express = require('express');
 var router = express.Router();
+var mongoose = require('mongoose');
+var todo = require('../models/todosDB');
 
-var toDo = [
-  {
-    id: 1,
-    title: "StomachAffairs",
-    details: "Cook"
-  },
-  {
-    id: 2,
-    title: "OfficeAffairs",
-    details: "Update memo"
-  },
-  {
-    id: 3,
-    title: "RoadAffairs",
-    details: "Fix car"
-  }
-];
+
+// var toDo = [
+//   {
+//     id: 1,
+//     title: "StomachAffairs",
+//     details: "Cook"
+//   },
+//   {
+//     id: 2,
+//     title: "OfficeAffairs",
+//     details: "Update memo"
+//   },
+//   {
+//     id: 3,
+//     title: "RoadAffairs",
+//     details: "Fix car"
+//   }
+// ];
 
 router.route('/')
   .all(function (request, response, next) {
@@ -25,36 +28,47 @@ router.route('/')
   })
 
   .get(function (request, response) {
-    response.json(toDo);
+    todo.find(function (err, todo) {
+      response.json(todo);
+    });
   })
 
   .post(function (request, response) {
     var newToDo = request.body;
-    toDo.push(newToDo);
-    response.json(toDo);
+    todo.create({
+      title: newToDo.title,
+      details: newToDo.details
+    }, function (err, todo) {
+      if(err) {
+        return response.send(err);
+      }
+      response.json(todo);
+    });
   });
 
 router.route('/:id')
   .put(function (request, response) {
     var editToDo = request.body;
-    console.log(editToDo);
-    for(var i = 0; i < toDo.length; i++){
-      if(+request.params.id === toDo[i].id) {
-        toDo[i].details = editToDo.details;
-        toDo[i].title = editToDo.title;
-      }
-    }
-    response.json(toDo);
+    todo.findByIdAndUpdate(request.params.id, {
+      title: editToDo.title,
+      details: editToDo.details
+    }, function (err, todo) {
+      response.json(todo);
+    });
+    // console.log(editToDo);
+    // for(var i = 0; i < toDo.length; i++){
+    //   if(+request.params.id === toDo[i].id) {
+    //     toDo[i].details = editToDo.details;
+    //     toDo[i].title = editToDo.title;
+    //   }
+    // }
   })
 
   .delete(function (request, response) {
-    for(var i = 0; i < toDo.length; i++) {
-      if(+request.params.id === toDo[i].id) {
-        toDo.splice(i, 1);
-      }
-    }
-    console.log(toDo);
-    response.json(toDo);
+
+    todo.findByIdAndRemove(request.params.id, function (err, todo) {
+      response.json(todo);
+    });
   });
 
 module.exports = router;
