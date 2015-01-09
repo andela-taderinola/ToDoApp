@@ -10,11 +10,6 @@ app.use(bodyParser.json());
 var todos = require('./routes/todos');
 app.use('/todos', todos);
 
-<<<<<<< HEAD
-
-
-
-=======
 app.listen(app.get('port'), function() {
-  console.log("Listening on port 3000");
+  console.log("Listening on port 5000");
 });
