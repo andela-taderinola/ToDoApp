@@ -38,7 +38,7 @@ router.route('/:id')
     });
     
 
-  });
+  })
 
   .delete(function (request, response) {
 

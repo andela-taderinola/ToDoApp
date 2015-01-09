@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 var todos = require('./routes/todos');
 app.use('/todos', todos);
 
-//Cross domain 
+//Cross domain allow access
 var allowCrossDomain = function(request, response, next) {
 	res.header('Access-Control-Allow-Origin', '*');
 	res.header('Access-Control-Allow-Methods', 'GET, PUT, POST');
