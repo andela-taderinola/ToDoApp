@@ -3,25 +3,6 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var todo = require('../models/todosDB');
 
-
-// var toDo = [
-//   {
-//     id: 1,
-//     title: "StomachAffairs",
-//     details: "Cook"
-//   },
-//   {
-//     id: 2,
-//     title: "OfficeAffairs",
-//     details: "Update memo"
-//   },
-//   {
-//     id: 3,
-//     title: "RoadAffairs",
-//     details: "Fix car"
-//   }
-// ];
-
 router.route('/')
   .all(function (request, response, next) {
     next();
@@ -40,9 +21,9 @@ router.route('/')
       details: newToDo.details
     }, function (err, todo) {
       if(err) {
-        return response.send(err);
+        response.send("An error occured.");
       }
-      response.json(todo);
+      response.send("A new entry '" + todo.title + "' has been created successfully, with id: '" + todo.id + "'");
     });
   });
 
@@ -55,19 +36,13 @@ router.route('/:id')
     }, function (err, todo) {
       response.json(todo);
     });
-    // console.log(editToDo);
-    // for(var i = 0; i < toDo.length; i++){
-    //   if(+request.params.id === toDo[i].id) {
-    //     toDo[i].details = editToDo.details;
-    //     toDo[i].title = editToDo.title;
-    //   }
-    // }
+    
   })
 
   .delete(function (request, response) {
 
     todo.findByIdAndRemove(request.params.id, function (err, todo) {
-      response.json(todo);
+      response.send("The entry '" + todo.title + "' has been removed successfully");
     });
   });
 

@@ -9,8 +9,6 @@ var todos = require('./routes/todos');
 app.use('/todos', todos);
 
 
-
-
 app.listen(3000, function() {
   console.log("Listening on port 3000");
 });
