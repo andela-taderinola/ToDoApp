@@ -3,9 +3,9 @@ var app = express();
 
 //Cross domain allow access
 var allowCrossDomain = function(request, response, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+  response.header('Access-Control-Allow-Origin', '*');
+  response.header('Access-Control-Allow-Methods', 'GET, PUT, POST');
+  response.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
 
   next();
 };
