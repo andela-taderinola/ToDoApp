@@ -40,11 +40,11 @@ router.route('/:id')
 
   });
 
-  // .delete(function (request, response) {
+  .delete(function (request, response) {
 
-  //   todo.findByIdAndRemove(request.params.id, function (err, todo) {
-  //     response.send("The entry '" + todo.title + "' has been removed successfully");
-  //   });
-  // });
+    todo.findByIdAndRemove(request.params.id, function (err, todo) {
+      response.send("The entry '" + todo.title + "' has been removed successfully");
+    });
+  });
 
 module.exports = router;
