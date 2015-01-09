@@ -8,6 +8,14 @@ var todoSchema = new Schema({
   },
   details: {
     type: String
+  },
+  created: {
+    type: Date,
+    default: Date.now
+  },
+  __v: {
+    type: Number,
+    select: false
   }
 });
 
