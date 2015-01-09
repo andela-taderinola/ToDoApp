@@ -23,7 +23,7 @@ router.route('/')
       if(err) {
         response.send("An error occured.");
       }
-      response.send("A new entry '" + todo.title + "' has been created successfully, with id: '" + todo.id + "'");
+      response.send("A new entry '" + todo.title + "' has been created successfully, with id: '" + todo.id + "'\nDetails: '" + todo.details + "'");
     });
   });
 
@@ -37,13 +37,14 @@ router.route('/:id')
       response.json(todo);
     });
     
-  })
 
-  .delete(function (request, response) {
-
-    todo.findByIdAndRemove(request.params.id, function (err, todo) {
-      response.send("The entry '" + todo.title + "' has been removed successfully");
-    });
   });
+
+  // .delete(function (request, response) {
+
+  //   todo.findByIdAndRemove(request.params.id, function (err, todo) {
+  //     response.send("The entry '" + todo.title + "' has been removed successfully");
+  //   });
+  // });
 
 module.exports = router;
